@@ -1,0 +1,42 @@
+
+/* Product Grid structure */
+main {
+    max-width: 1200px;
+}
+.product-grid {
+margin: auto;
+max-width: 800px;
+}
+
+.product-price {
+    font-family: var(--font-fira);
+    font-weight: bolder;
+    font-size: var(--font-md-view);
+    grid-area: product-price;
+    margin: 1em;
+    text-align: center;
+}
+/* Detailed product information */
+
+
+.product-rating {
+    grid-area: product-rating;
+    height: 85%;
+    text-align: center;
+    width: auto;
+}
+
+.add-cart #buy {
+    padding-right: 3em;
+    padding-left: 3em;
+}
+
+/*==== Media queries starts here===== */
+/* Small Port View */
+@media  screen and (min-width:48em) {
+ 
+}   
+/* Medium Port View */
+@media screen and (min-width: 82em){
+
+}
