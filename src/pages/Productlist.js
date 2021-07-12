@@ -1,44 +1,61 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Layout from 'components/Layout'
-// import SearchResults from '../components/SearchResults'
-import ProductRow from '../components/ProductRow'
-const productList = () => {
+import SearchResults from '../components/SearchResults'
+// import ProductRow from '../components/ProductRow'
+const productList = ({data}) => {
 
-  // const [searchState, setSearchState] = useState({
-  //   colors: ``
-  // })
+  const [searchState, setSearchState] = useState({
+    colors: [],
+    sort:(a,b) => a.price - b.price
+  })
 
-  // const {colors} = searchState
-
-  // const searchResult = data
-  // .filter(({colorsOpt}) => colors.length === `` || 
-  //                       colorsOpt.filter((color)=> colors.includes(color)).length > 0)
+  const {colors, sort} = searchState
+console.log(data)
+  const searchResult = data
+  .filter((guitar) => colors.length === 0 || colors.includes(guitar.color))
+  .sort(sort)
   
-  // const handleEnrolledChange = ({target}) => {
-  //   // When a check or uncheck a checkbox, add/remove the "value" from the Array
+  const handleColorOptionChange = ({target}) => {
+    // When a check or uncheck a checkbox, add/remove the "value" from the Array
 
-  //   if (target.checked) {
-  //     setSearchState({
-  //       ...searchState,
-  //       colors: [...searchState.colors, target.value]
-  //     })
-  //   } else {
-  //     setSearchState({
-  //       ...searchState,
-  //       colors: searchState.colors.filter((color) => color !== target.value)
-  //     })
-  //   }
+    if (target.checked) {
+      setSearchState({
+        ...searchState,
+        colors: [...searchState.colors, target.value]
+      })
+    } else {
+      setSearchState({
+        ...searchState,
+        colors: searchState.colors.filter((color) => color !== target.value)
+      })
+    }
   
-  // }
+  }
+
+  const handleSortChange = ({target}) => {
+
+    let sorting
+    if (target.value === "0") {
+      sorting = (a, b) => a.price - b.price
+    } else if (target.value === "1") {
+      sorting = (a, b) => b.price - a.price
+    }
+
+    setSearchState({
+      ...searchState,
+      sort: sorting
+    })
+  }
+
     return (
       
 <Layout>
         <form className="filters">
 
         <div className="filter-options">
-          <fieldset className="top-filter" >
+          <fieldset className="top-filter" onChange={handleColorOptionChange}>
             <legend>Colour</legend>
-            <ul className="filter-list" id="filter-colour">
+            <ul className="filter-list" id="filter-colour" >
               <label htmlFor="filter-black" className="colorpicked-filter">
                 <li><input type="checkbox" name="colour" value="black" id="filter-black" className="checkbox" />
                   <span>Black</span>
@@ -115,8 +132,19 @@ const productList = () => {
         </div>
   
       </form>
-      <ProductRow />
-      {/* <SearchResults result={searchResult} /> */}
+
+      <h2 className="subheading">Results</h2>
+                        <section className="show-filter">
+                        <h4>Show</h4>
+                        <label htmlFor="sort">Show</label>
+                        <select name="sort" id="sort" defaultValue="0" onChange={handleSortChange}>
+                            <option value="0">Price, lowest to highest</option>
+                            <option value="1">Price, highest to lowest</option>
+                            {/* <option value="newest">Newest releases</option> */}
+                        </select>
+                        </section>
+      {/* <ProductRow /> */}
+      <SearchResults result={searchResult} />
       </Layout>
       
     )
