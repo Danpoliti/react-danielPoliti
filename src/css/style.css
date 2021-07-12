@@ -6,6 +6,12 @@
 /* Fira Sans Regular 700 */
 
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@700&display=swap');
+
+#root {
+    text-align: left;
+    background-color: lavender;
+}
+
 html {
     box-sizing: border-box;
     /* Colors */
@@ -436,6 +442,8 @@ button#search-button {
     background-color: lavender;
     color: var(--font-color1);
     text-align: left;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 /* Selection box SHOW customization */
@@ -918,11 +926,21 @@ button.product-favorite:hover {
     }
     .results {
         border: rgb(194, 194, 255);
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-areas: "subheading subheading show-filter" "product product product" "product product product" "product product product" "pagination pagination pagination";
-        grid-gap: 1.5em;
+        display: inline-block;
+        /* margin-left: 5px;
+        margin-right: 5px; */
+        width: 31%;
+        /* grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: 
+        "subheading subheading show-filter" 
+        "product product product" 
+        "product product product" 
+        "product product product" 
+        "pagination pagination pagination";
+        grid-gap: 1.5em; */
     }
+    
+    
     .subheading {
         grid-area: subheading;
     }
@@ -943,13 +961,21 @@ button.product-favorite:hover {
     }
     .pagination {
         grid-area: pagination;
+        text-align: center;
+        margin-top: 2em;
+        margin-bottom: 2em;
     }
     .pagination p {
-        color: var(--purplefoot);
+        color: white;
         font-family: var(--font-fira);
         font-weight: bolder;
         font-size: var(--font-lg-view);
         text-align: center;
+    }
+
+    .pagination button {
+        color: var(--purplefoot);
+        font-weight: bold;
     }
     .pages {
         display: flex;
