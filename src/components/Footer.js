@@ -15,7 +15,7 @@ const Footer = () => {
         <li><a href="#">Privacy Policy</a></li>
       </ul>
     </nav>
-    <p className="copyright">&copy; Copyright, {(new Date()).getFullYear()}.<img src={logo} alt="" class="foot-image" /></p>
+    <p className="copyright">&copy; Copyright, {(new Date()).getFullYear()}.<img src={logo} alt="" className="foot-image" /></p>
   </footer>
   )
 }
