@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Image from './Image.js'
 // import noImg from 'img/student.png'
 
@@ -18,7 +19,7 @@ const ProductRow = ({data}) => {
                 <Image src={img[2]} alt="Product Image" className="thumb2-img" />
                 <Image src={img[3]} alt="Product Image" className="thumb3-img" />
             </div>
-            <h3><a href="product.html">{name} - {color}</a></h3>
+            <h3><Link to={`/product/${id}`}>{name} - {color}</Link></h3>
             <header className="product-header">
 
                 <data value="179" className="product-price"><del>{regularPrice}</del><br /><ins>{price}</ins>

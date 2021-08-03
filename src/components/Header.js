@@ -1,9 +1,13 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { Link } from 'react-router-dom'
 import logo from 'img/guitarwhite.svg'
+import UserContext from '../contexts/user'
 
 
 const Header = () => {
 
+const {data} = useContext(UserContext)
+console.log(`Header()`, data)
   return (
  <>
    <header className="page-header">
@@ -39,6 +43,11 @@ const Header = () => {
       <li><a href="#"><span className="material-icons">favorite_border</span></a></li>
       <li><a href="#"><span className="material-icons">shopping_cart</span></a></li>
     </ul>
+    {
+      (data)
+      ? <Link to="/user">{data.username}</Link>
+      : <Link to="/login">Log-In</Link>
+    }
     
   </nav>
   <form className="search">
