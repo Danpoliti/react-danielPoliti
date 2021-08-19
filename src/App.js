@@ -1,259 +1,82 @@
-import React from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import UserContext, {useUpdateUser} from 'contexts/user'
+import UserContext, { useUpdateUser } from 'contexts/user'
+import CartContext, { useMoney } from 'contexts/cart'
+import Checkout from 'pages/Checkout'
 import Productlist from 'pages/Productlist'
 import Product from 'pages/Product'
 import FourOhFour from 'pages/FourOhFour'
+import firebase from 'utils/firebase'
 
 const App = () => {
 
-    //
+    const [loadProd, setLoadProd] = useState(false)
 
-    const productsData = [
-        {
-            //Product 1//
-            id: `01`,
-            name: `Eletric Guitar - Stratocaster`,
-            category: `guitar`,
-            regularPrice: `250.00`,
-            price: 179.00,
-            details: `The archetypical Stratocaster is a solid-body electric guitar with a contoured asymmetric double-cutaway...`,
-            img: [`strato.jpg`, `strato.jpg`, `strato-white.jpg`, `strato-red.jpg`],
-            color: `black`,
-            type: `RH`
-        },
-        {
-            //Product 2//
-            id: `02`,
-            name: `Acoustic Guitar - Cutway`,
-            category: `guitar`,
-            regularPrice: `200.00`,
-            price: 138.00,
-            details: `An acoustic guitar is a musical instrument in the guitar family. Its strings vibrate a sound board on a...`,
-            img: [`acoustic-cutway-front.jpg`, `acoustic-cutway-front-back.jpg`, `acoustic-cutway-front-back-black.jpg`, `acoustic-cutway-front.jpg`],
-            color: `white`,
-            type: `LH`
-        },
-        {
-            //Product 3//
-            id: `03`,
-            name: `Bass Guitar`,
-            category: `bass`,
-            regularPrice: `250.00`,
-            price: 210.00,
-            details: `The bass guitar, electric bass or simply bass, is the lowest-pitched member of the guitar family...`,
-            img: [`bass-guitar.jpg`, `bass-guitar-pink.jpg`, `bass-guitar-back.jpg`, `bass-guitar.jpg`],
-            color: `red`,
-            type: `RH`
-        },
-        {
-            //Product 4//
-            id: `04`,
-            name: `Acoustic Bass`,
-            category: `bass`,
-            regularPrice: `480.00`,
-            price: 399.00,
-            details: `Here is a shot of this product that might entice a user to click and add it to their cart.`,
-            img: [`acoustic-bass.jpg`, `acoustic-bass-ivory.jpg`, `acoustic-bass-back.jpg`, `acoustic-bass.jpg`],
-            color: `black`,
-            type: `RH`
-        },
-        {
-            //Product 5//
-            id: `05`,
-            name: `Eletric Guitar - Telecaster`,
-            category: `bass`,
-            regularPrice: `350.00`,
-            price: 285.00,
-            details: `Its simple yet effective design and revolutionary sound broke ground and set trends in electric.`,
-            img: [`telecaster.jpg`, `telecaster-white.jpg`, `telecaster.jpg`, `telecaster-back.jpg`],
-            color: `red`,
-            type: `RH`
-        },
-        {
-            //Product 6//
-            id: `06`,
-            name: `Eletric Guitar - Les Paul`,
-            category: `guitar`,
-            regularPrice: `350.00`,
-            price: 275.00,
-            details: `Here is a shot of this product that might entice a user to click and add it to their cart.`,
-            img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
-            color: `white`,
-            type: `RH`
-        },
-        {
-            //Product 7//
-            id: `07`,
-            name: `Eletric Guitar - Les Paul`,
-            category: `guitar`,
-            regularPrice: `350.00`,
-            price: 275.00,
-            details: `Here is a shot of this product that might entice a user to click and add it to their cart.`,
-            img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
-            color: `white`,
-            type: `RH`
-        },
-        {
-            //Product 8//
-            id: `08`,
-            name: `Eletric Guitar - Les Paul`,
-            category: `guitar`,
-            regularPrice: `350.00`,
-            price: 275.00,
-            details: `Here is a shot of this product that might entice a user to click and add it to their cart.`,
-            img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
-            color: `white`,
-            type: `RH`
-        },
-        {
-            //Product 9//
-            id: `09`,
-            name: `Eletric Guitar - Les Paul`,
-            category: `guitar`,
-            regularPrice: `350.00`,
-            price: 275.00,
-            details: `Here is a shot of this product that might entice a user to click and add it to their cart.`,
-            img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
-            color: `white`,
-            type: `RH`
-        },
-        {
-            //Product 10//
-            id: `10`,
-            name: `Eletric Guitar - Les Paul`,
-            category: `guitar`,
-            regularPrice: `350.00`,
-            price: 275.00,
-            details: `Here is a shot of this product that might entice a user to click and add it to their cart.`,
-            img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
-            color: `white`,
-            type: `RH`
-        },
-        {
-            //Product 11//
-            id: `11`,
-            name: `Eletric Guitar - Les Paul`,
-            category: `guitar`,
-            regularPrice: `350.00`,
-            price: 275.00,
-            details: `Here is a shot of this product that might entice a user to click and add it to their cart.`,
-            img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
-            color: `white`,
-            type: `RH`
-        },
-        {
-            //Product 12//
-            id: `12`,
-            name: `Eletric Guitar - Les Paul`,
-            category: `guitar`,
-            regularPrice: `350.00`,
-            price: 275.00,
-            details: `Here is a shot of this product that might entice a user to click and add it to their cart.`,
-            img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
-            color: `white`,
-            type: `RH`
-        },
-        {
-            //Product 13//
-            id: `13`,
-            name: `Eletric Guitar - Les Paul`,
-            category: `guitar`,
-            regularPrice: `350.00`,
-            price: 275.00,
-            details: `Here is a shot of this product that might entice a user to click and add it to their cart.`,
-            img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
-            color: `white`,
-            type: `RH`
-        },
-        {
-            //Product 14//
-            id: `14`,
-            name: `Eletric Guitar - Les Paul`,
-            category: `guitar`,
-            regularPrice: `350.00`,
-            price: 275.00,
-            details: `Here is a shot of this product that might entice a user to click and add it to their cart.`,
-            img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
-            color: `white`,
-            type: `RH`
-        },
-        {
-            //Product 15//
-            id: `15`,
-            name: `Eletric Guitar - Les Paul`,
-            category: `guitar`,
-            regularPrice: `350.00`,
-            price: 275.00,
-            details: `Here is a shot of this product that might entice a user to click and add it to their cart.`,
-            img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
-            color: `white`,
-            type: `RH`
-        },
-        {
-            //Product 16//
-            id: `16`,
-            name: `Eletric Guitar - Les Paul`,
-            category: `guitar`,
-            regularPrice: `350.00`,
-            price: 275.00,
-            details: `Here is a shot of this product that might entice a user to click and add it to their cart.`,
-            img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
-            color: `white`,
-            type: `RH`
-        },
-        {
-            //Product 17//
-            id: `17`,
-            name: `Eletric Guitar - Les Paul`,
-            category: `guitar`,
-            regularPrice: `350.00`,
-            price: 275.00,
-            details: `Here is a shot of this product that might entice a user to click and add it to their cart.`,
-            img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
-            color: `white`,
-            type: `RH`
-        },
-        {
-            //Product 18//
-            id: `18`,
-            name: `Eletric Guitar - Les Paul`,
-            category: `guitar`,
-            regularPrice: `350.00`,
-            price: 275.00,
-            details: `Here is a shot of this product that might entice a user to click and add it to their cart.`,
-            img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
-            color: `white`,
-            type: `RH`
-        },
-        {
-            //Product 19//
-            id: `19`,
-            name: `Eletric Guitar - Les Paul`,
-            category: `guitar`,
-            regularPrice: `350.00`,
-            price: 275.00,
-            details: `Here is a shot of this product that might entice a user to click and add it to their cart.`,
-            img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
-            color: `white`,
-            type: `RH`
-        },
-        {
-            //Product 20//
-            id: `20`,
-            name: `Eletric Guitar - Les Paul`,
-            category: `guitar`,
-            regularPrice: `350.00`,
-            price: 275.00,
-            details: `Here is a shot of this product that might entice a user to click and add it to their cart.`,
-            img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
-            color: `white`,
-            type: `RH`
-        },
-    ]
+    const [productsData, setProductsData] = useState([])
+    const db = firebase.firestore()
 
-    // <Productlist data={productsData} />
-    // <Product />
+    useEffect(() => {
+        const loadData = async () => {
+    
+          
+          setLoadProd(true)
+          
+          await db.collection(`productsData`).get().then((snapshot) => {
+            setProductsData(snapshot.docs.map(doc => doc.data()))
+          })
+          
+         setLoadProd(false)
+        }
+        
+        loadData()
+      }, [])
+
+//     const [cart, setCart] = useState([])
+//     const [fav, setFav] = useState([]);
+// // ADD
+//     const AddCart =  (event, id) => {
+//         const cartproduct = productsData.find(product => product.id.includes(id))
+//         const cartProd = cart.find(product => product.id.includes(cartproduct.id))
+//         if (cartProd===cartproduct){return}
+    
+//         setCart([...cart, cartproduct])
+       
+//       }
+// // DELETE
+//       const deleteItemCart =  (event, id) => {
+    
+//         const deleteItem = cart.filter(product => !product.id.includes(id))
+        
+//         setCart([...deleteItem])
+    
+//       }
+// //move items to favourites
+// const addFavorite =  (event, id) => {
+//     const cartproduct = productsData.find(product => product.id.includes(id))
+//     const cartProd = fav.find(product => product.id.includes(cartproduct.id))
+//     if (cartProd===cartproduct){
+//       const deleteItem = cart.filter(product => !product.id.includes(id))
+//       setCart([...deleteItem])
+//       return
+//     }
+
+//     setFav([...fav, cartproduct])
+//     const deleteItem = cart.filter(product => !product.name.includes(name))
+    
+//     setCart([...delProduct])
+    
+//   }
+
+    // const addToCart = (id) => {
+    //     const index = cart.findIndex((val) => val.id === id)
+
+    //     if (index === -1)
+    //     cart.push({id: id, count: 1})
+    //     else
+    //     cart[index].count++
+
+    //     setCart([...cart])
+    // }
 
     const userData = {
         id: 1234,
@@ -267,18 +90,39 @@ const App = () => {
         console.log(`App()`, userData)
     }
 
+    const updateProduct = (userid) => {
+        const fproduct = productsData.filter(product => product.id.includes(userid))
+        return fproduct
+    }
+	const [cart, setCart] = useState([])
+    const addToCart = (id) => {
+		const index = cart.findIndex((val) => val.id === id)
+		
+		if (index === -1) // product not found in the cart
+			cart.push({id: id, count: 1})
+		else
+			cart[index].count++ // increase the "count" by +1
+		
+		setCart([...cart])
+	}
+
     return (
-        <Router>
-            <UserContext.Provider value={{data: userData, updateUsername: updateUsername}}>
+        <UserContext.Provider value={{ userdata: userData, updateUsername: updateUsername, data: productsData, updateProduct: updateProduct }}>
+            <CartContext.Provider value={{data: cart, updater: addToCart}}>
+            <Router>
                 <Switch>
                     <Route exact path="/"><Productlist data={productsData} /></Route>
                     <Route path="/product/:slug">
                         <Product />
                     </Route>
                     <Route path="*"><FourOhFour /></Route>
+                    <Route path="/cart">
+							<Checkout />
+						</Route>
                 </Switch>
-            </UserContext.Provider>
-        </Router>
+            </Router>
+            </CartContext.Provider>
+        </UserContext.Provider>
     )
 }
 

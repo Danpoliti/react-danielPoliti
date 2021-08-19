@@ -1,17 +1,19 @@
 import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
 import logo from 'img/guitarwhite.svg'
-import UserContext from '../contexts/user'
+import UserContext from 'contexts/user'
 
 
 const Header = () => {
 
 const {data} = useContext(UserContext)
 console.log(`Header()`, data)
+
+
   return (
  <>
    <header className="page-header">
-    <a href="index.html" className="logo"><img src={logo} alt="Logo Music Store" />
+    <a href="/" className="logo"><img src={logo} alt="Logo Music Store" />
     </a>
 
     {/* <!-- Navigation menu and toggle button (non-functional) --> */}
@@ -40,8 +42,11 @@ console.log(`Header()`, data)
       <li><a href="#">Contact Us</a></li>
     </ul>
     <ul className="your-products">
-      <li><a href="#"><span className="material-icons">favorite_border</span></a></li>
-      <li><a href="#"><span className="material-icons">shopping_cart</span></a></li>
+      <li><a href="#"><span className="material-icons">favorite_border</span>1</a></li>
+      <li><Link to="/cart"><span className="material-icons">shopping_cart</span></Link></li>
+      <input type="search" name="find" id="find" className="search-box" />
+
+    <button type="button" id="search-button"><span className="material-icons" id="search">search</span></button>
     </ul>
     {
       (data)
