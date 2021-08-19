@@ -6,13 +6,15 @@ const productList = ({data}) => {
 
   const [searchState, setSearchState] = useState({
     colors: [],
-    sort:(a,b) => a.price - b.price
+    sort:(a,b) => a.price - b.price,
+    type: []
   })
 
-  const {colors, sort} = searchState
+  const {colors, sort, type} = searchState
 console.log(data)
   const searchResult = data
   .filter((guitar) => colors.length === 0 || colors.includes(guitar.color))
+  .filter((style) => type.length === 0 || type.includes(style.type))
   .sort(sort)
   
   const handleColorOptionChange = ({target}) => {
@@ -27,6 +29,22 @@ console.log(data)
       setSearchState({
         ...searchState,
         colors: searchState.colors.filter((color) => color !== target.value)
+      })
+    }
+  
+  }
+  const handleHandOptionChange = ({target}) => {
+    // When a check or uncheck a checkbox, add/remove the "value" from the Array
+
+    if (target.checked) {
+      setSearchState({
+        ...searchState,
+        type: [...searchState.type, target.value]
+      })
+    } else {
+      setSearchState({
+        ...searchState,
+        type: searchState.type.filter((hand) => hand !== target.value)
       })
     }
   
@@ -51,7 +69,17 @@ console.log(data)
       
 <Layout>
         <form className="filters">
-
+        <div className="result-header">
+      <h2 className="subheading">Results</h2>
+                        <section className="show-filter">
+                        <h4>Show</h4>
+                        <label htmlFor="sort">Show</label>
+                        <select name="sort" id="sort" defaultValue="0" onChange={handleSortChange}>
+                            <option value="0">Price, lowest to highest</option>
+                            <option value="1">Price, highest to lowest</option>
+                        </select>
+                        </section>
+             </div>
         <div className="filter-options">
           <fieldset className="top-filter" onChange={handleColorOptionChange}>
             <legend>Colour</legend>
@@ -73,7 +101,7 @@ console.log(data)
               
             </ul>
           </fieldset>
-          <fieldset className="top-filter">
+          <fieldset className="top-filter" onChange={handleHandOptionChange}>
             <legend>Type</legend>
             <ol className="filter-list">
               <label htmlFor="right-handed" className="handed-filter">
@@ -90,7 +118,7 @@ console.log(data)
   
             </ol>
           </fieldset>
-          <fieldset className="top-filter" id="star-filter">
+          {/* <fieldset className="top-filter" id="star-filter">
             <legend>Ratings (above)</legend>
             <ol className="filter-list" id="rating">
               <li>
@@ -128,22 +156,11 @@ console.log(data)
                 </label>
               </li>
             </ol>
-          </fieldset>
+          </fieldset> */}
         </div>
-  
+
       </form>
 
-      <h2 className="subheading">Results</h2>
-                        <section className="show-filter">
-                        <h4>Show</h4>
-                        <label htmlFor="sort">Show</label>
-                        <select name="sort" id="sort" defaultValue="0" onChange={handleSortChange}>
-                            <option value="0">Price, lowest to highest</option>
-                            <option value="1">Price, highest to lowest</option>
-                            {/* <option value="newest">Newest releases</option> */}
-                        </select>
-                        </section>
-      {/* <ProductRow /> */}
       <SearchResults result={searchResult} />
       </Layout>
       
