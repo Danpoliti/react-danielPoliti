@@ -16,26 +16,25 @@ const SingleProductRow = ({ data }) => {
 
 
   const addToFavorite = () => {
-      console.log(fav);
-      db.collection("productsData")
-        .doc(id)
-        .update({
-          fav: !fav,
-        })
-        .then(() => {
-          setFav(!fav);
-          console.log("'Favorite' updated!");
-        })
-        .catch((error) => {
-          console.error("Error writing document: ", error);
-        });
-  
+    console.log(fav);
+    db.collection("productsData")
+      .doc(id)
+      .update({
+        fav: !fav,
+      })
+      .then(() => {
+        setFav(!fav);
+        console.log("'Favorite' updated!");
+      })
+      .catch((error) => {
+        console.error("Error writing document: ", error);
+      });
+
   }
   const cartItem = useContext(UserContext)
-const AddtoCart = cartItem.AddtoCart
-const favItem = useContext(UserContext)
-const AddtoFavorite = favItem.AddtoFavorite
-const DeletefromFavorite = favItem.DeletefromFavorite
+  const AddtoCart = cartItem.AddtoCart
+  const favItem = useContext(UserContext)
+  const AddtoFavorite = favItem.AddtoFavorite
 
 
 
@@ -70,12 +69,18 @@ const DeletefromFavorite = favItem.DeletefromFavorite
           <div className="add-cart">
             <button type="button" className="add-cart" onClick={(event) => AddtoCart(event, id)}><span className="material-icons">shopping_cart</span> Add to Cart</button>
             {fav ? (
-              <button type="button" className="product-favorite" onClick={(event) => AddtoFavorite(event, id)}><span className="material-icons">favorite</span></button>
-            ) : (<button type="button" className="product-favorite" onClick={(event) => DeleteFromFavorite(event, id)}><span className="material-icons">favorite_border</span></button>)
+              <button type="button" className="product-favorite" onClick={addToFavorite}><span className="material-icons">favorite</span></button>
+            ) : (<button type="button" className="product-favorite" onClick={addToFavorite}><span className="material-icons">favorite_border</span></button>)
             }        </div>
+
+          {/* {fav ? (
+            <button type="button" className="product-favorite" onClick={(event) => AddtoFavorite(event, id)}><span className="material-icons">favorite</span></button>
+          ) : (<button type="button" className="product-favorite" onClick={(event) => DeleteFromFavorite(event, id)}><span className="material-icons">favorite_border</span></button>)
+          }        </div> */}
+
         </header>
       </article>
-    </section>
+    </section >
 
 
 
