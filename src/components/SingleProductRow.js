@@ -4,8 +4,6 @@ import UserContext from 'contexts/user'
 import { Link } from 'react-router-dom'
 import firebase from 'utils/firebase'
 
-// import 'css/product'
-
 
 
 const SingleProductRow = ({ data }) => {

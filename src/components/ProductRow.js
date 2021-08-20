@@ -11,7 +11,7 @@ const ProductRow = ({ data }) => {
     const [fav, setFav] = useState(false);
     const db = firebase.firestore()
 
-// console.log(whatee)
+
 const addToFavorite = () => {
     console.log(fav);
     db.collection("productsData")

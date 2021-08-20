@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from 'img/guitarwhite.svg'
+
 const Footer = () => {
   return (
 <footer className="page-footer">

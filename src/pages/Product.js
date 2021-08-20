@@ -8,11 +8,8 @@ import SingleProductRow from 'components/SingleProductRow'
 const Product = () => {
 
     const {slug} = useParams()
-  //console.log(slug)
 
   const newItem = useContext(UserContext)
-//   const cartArr = newProduct.userCart
-//   const favArr = newProduct.userFav
   
   const productId = newItem.updateProduct(slug)
   const singleProduct = productId.map(prod => <SingleProductRow key={prod.id} data={prod} />)
@@ -27,7 +24,6 @@ const Product = () => {
     return (
         <Layout>
             <header>
-                {/* <h1>Product {slug}</h1> */}
                 {singleProduct}
             </header>
         </Layout>

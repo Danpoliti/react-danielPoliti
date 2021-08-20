@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import Layout from 'components/Layout'
 import SearchResults from '../components/SearchResults'
-// import ProductRow from '../components/ProductRow'
+
+
 const productList = ({data}) => {
 
   const [searchState, setSearchState] = useState({
@@ -118,45 +119,6 @@ console.log(data)
   
             </ol>
           </fieldset>
-          {/* <fieldset className="top-filter" id="star-filter">
-            <legend>Ratings (above)</legend>
-            <ol className="filter-list" id="rating">
-              <li>
-                <input type="radio" name="rating" value="4" id="aboveFour" hidden />
-                <label htmlFor="aboveFour">
-  
-                  <span className="material-icons">star</span><span className="material-icons">star</span><span
-                    className="material-icons">star</span><span className="material-icons">star</span><span
-                    className="material-icons">star_border</span>
-                </label>
-  
-              </li>
-              <li>
-                <input type="radio" name="rating" value="3" id="aboveThree" hidden />
-                <label htmlFor="aboveThree">
-                  <span className="material-icons">star</span><span className="material-icons">star</span><span
-                    className="material-icons">star</span><span className="material-icons">star_border</span><span
-                    className="material-icons">star_border</span>
-                </label>
-              </li>
-              <li>
-                <input type="radio" name="rating" value="2" id="aboveTwo" hidden />
-                <label htmlFor="aboveTwo">
-                  <span className="material-icons">star</span><span className="material-icons">star</span><span
-                    className="material-icons">star_border</span><span className="material-icons">star_border</span><span
-                    className="material-icons">star_border</span>
-                </label>
-              </li>
-              <li>
-                <input type="radio" name="rating" value="1" id="aboveOne" hidden />
-                <label htmlFor="aboveOne">
-                  <span className="material-icons">star</span><span className="material-icons">star_border</span><span
-                    className="material-icons">star_border</span><span className="material-icons">star_border</span><span
-                    className="material-icons">star_border</span>
-                </label>
-              </li>
-            </ol>
-          </fieldset> */}
         </div>
 
       </form>

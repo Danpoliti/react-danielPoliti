@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import logo from 'img/guitarwhite.svg'
 import UserContext from 'contexts/user'
-import Checkout from 'pages/Checkout'
 
 
 const Header = () => {
@@ -13,7 +12,10 @@ const Header = () => {
   const prodFavorite = useContext(UserContext)
   const addFavorite = prodFavorite.addFavorite
 
+  const user = useContext(UserContext)
 
+  console.log(user.data)
+  const login = user.updateUsername(`Politi`)
   return (
     <>
       <header className="page-header">
@@ -49,9 +51,9 @@ const Header = () => {
           <button type="button" id="search-button"><span className="material-icons" id="search">search</span></button>
         </ul>
         {
-          (data)
+          (login)
             ? <Link to="/user">{data.username}</Link>
-            : <Link to="/login">Log-In</Link>
+            : <Link to="/login">User: Daniel Politi</Link>
         }
 
       </nav>

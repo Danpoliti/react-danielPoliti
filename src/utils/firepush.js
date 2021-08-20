@@ -48,8 +48,7 @@ const batchSetter = async (collection, records) => {
         img: [`strato.jpg`, `strato.jpg`, `strato-white.jpg`, `strato-red.jpg`],
         color: `black`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 2//
@@ -62,8 +61,7 @@ const batchSetter = async (collection, records) => {
         img: [`acoustic-cutway-front.jpg`, `acoustic-cutway-front-back.jpg`, `acoustic-cutway-front-back-black.jpg`, `acoustic-cutway-front.jpg`],
         color: `white`,
         type: `LH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 3//
@@ -76,8 +74,7 @@ const batchSetter = async (collection, records) => {
         img: [`bass-guitar.jpg`, `bass-guitar-pink.jpg`, `bass-guitar-back.jpg`, `bass-guitar.jpg`],
         color: `red`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 4//
@@ -90,8 +87,7 @@ const batchSetter = async (collection, records) => {
         img: [`acoustic-bass.jpg`, `acoustic-bass-ivory.jpg`, `acoustic-bass-back.jpg`, `acoustic-bass.jpg`],
         color: `black`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 5//
@@ -104,8 +100,7 @@ const batchSetter = async (collection, records) => {
         img: [`telecaster.jpg`, `telecaster-white.jpg`, `telecaster.jpg`, `telecaster-back.jpg`],
         color: `red`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 6//
@@ -118,8 +113,7 @@ const batchSetter = async (collection, records) => {
         img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
         color: `white`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 7//
@@ -132,8 +126,7 @@ const batchSetter = async (collection, records) => {
         img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
         color: `white`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 8//
@@ -146,8 +139,7 @@ const batchSetter = async (collection, records) => {
         img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
         color: `white`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 9//
@@ -160,8 +152,7 @@ const batchSetter = async (collection, records) => {
         img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
         color: `white`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 10//
@@ -174,8 +165,7 @@ const batchSetter = async (collection, records) => {
         img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
         color: `white`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
 
     {
@@ -189,8 +179,7 @@ const batchSetter = async (collection, records) => {
         img: [`strato.jpg`, `strato.jpg`, `strato-white.jpg`, `strato-red.jpg`],
         color: `black`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 12//
@@ -203,8 +192,7 @@ const batchSetter = async (collection, records) => {
         img: [`acoustic-cutway-front.jpg`, `acoustic-cutway-front-back.jpg`, `acoustic-cutway-front-back-black.jpg`, `acoustic-cutway-front.jpg`],
         color: `white`,
         type: `LH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 13//
@@ -217,8 +205,7 @@ const batchSetter = async (collection, records) => {
         img: [`bass-guitar.jpg`, `bass-guitar-pink.jpg`, `bass-guitar-back.jpg`, `bass-guitar.jpg`],
         color: `red`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 14//
@@ -231,8 +218,7 @@ const batchSetter = async (collection, records) => {
         img: [`acoustic-bass.jpg`, `acoustic-bass-ivory.jpg`, `acoustic-bass-back.jpg`, `acoustic-bass.jpg`],
         color: `black`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 15//
@@ -245,8 +231,7 @@ const batchSetter = async (collection, records) => {
         img: [`telecaster.jpg`, `telecaster-white.jpg`, `telecaster.jpg`, `telecaster-back.jpg`],
         color: `red`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 16//
@@ -259,8 +244,7 @@ const batchSetter = async (collection, records) => {
         img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
         color: `white`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 17//
@@ -273,8 +257,7 @@ const batchSetter = async (collection, records) => {
         img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
         color: `white`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 18//
@@ -287,8 +270,7 @@ const batchSetter = async (collection, records) => {
         img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
         color: `white`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 19//
@@ -301,8 +283,7 @@ const batchSetter = async (collection, records) => {
         img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
         color: `white`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
     {
         //Product 20//
@@ -315,8 +296,7 @@ const batchSetter = async (collection, records) => {
         img: [`lespaul.png`, `lespaul-white.jpg`, `lespaul-bw.jpg`, `lespaul.png`],
         color: `white`,
         type: `RH`,
-        fav: false,
-        cart: 0
+        fav: false
     },
 
     ])
