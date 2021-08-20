@@ -13,6 +13,7 @@ const App = () => {
     const [loadProd, setLoadProd] = useState(false)
 
     const [productsData, setProductsData] = useState([])
+
     const db = firebase.firestore()
 
     useEffect(() => {
@@ -91,34 +92,41 @@ const App = () => {
     }
 
     const updateProduct = (userid) => {
-        const fproduct = productsData.filter(product => product.id.includes(userid))
+        const fproduct = productsData.filter(product => product.id.includes(userid)) //CHAGE BARIABLE NAME
         return fproduct
     }
-	const [cart, setCart] = useState([])
-    const addToCart = (id) => {
-		const index = cart.findIndex((val) => val.id === id)
-		
-		if (index === -1) // product not found in the cart
-			cart.push({id: id, count: 1})
-		else
-			cart[index].count++ // increase the "count" by +1
-		
-		setCart([...cart])
-	}
+    const [addCart, setAddCart] = useState([])
+
+    // const addToCart = (userid) => {
+    //     const ffff = productsData.find((prod) =>prod.id.includes(userid))
+        
+    //     console.log(addCart)
+    //      // increase the "count" by +1
+        
+    //     setAddCart([ffff,...addCart])
+    // }
+    const AddtoCart =  (event, userid) => {
+        const cproduct = productsData.find(product => product.id.includes(userid))
+       
+    console.log(cproduct)
+        setAddCart([...addCart, cproduct])
+       
+      }
 
     return (
-        <UserContext.Provider value={{ userdata: userData, updateUsername: updateUsername, data: productsData, updateProduct: updateProduct }}>
-            <CartContext.Provider value={{data: cart, updater: addToCart}}>
+        <UserContext.Provider value={{addCart: addCart, userdata: userData, updateUsername: updateUsername, data: productsData, updateProduct: updateProduct, AddtoCart: AddtoCart
+         }}>
+            <CartContext.Provider value={{data: addCart}}>
             <Router>
                 <Switch>
                     <Route exact path="/"><Productlist data={productsData} /></Route>
                     <Route path="/product/:slug">
                         <Product />
                     </Route>
-                    <Route path="*"><FourOhFour /></Route>
-                    <Route path="/cart">
+                    <Route path="/Checkout">
 							<Checkout />
 						</Route>
+                    <Route path="*"><FourOhFour /></Route>
                 </Switch>
             </Router>
             </CartContext.Provider>

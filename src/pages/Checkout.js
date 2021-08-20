@@ -1,33 +1,49 @@
 import React, {useContext, useState} from 'react'
-import CartContext from 'contexts/cart'
-import ProductsContext from 'contexts/products'
+import CartComp from 'components/CartComp'
+import {Link} from 'react-router-dom'
+import UserContext from 'contexts/user'
+import Layout from 'components/Layout'
 
 
-const Checkout = () => {
 
-    const cart = useContext(CartContext).data
-    const products = useContext(ProductsContext).data
-    let subtotal = 0
+ 
+ 
+const Cartpage = () => {
 
-    return (
-        <>
-        <h2>Checkout</h2>
-        <ul>
-            {
-                (cart.length)
-                ? cart.map(p => {
-                    let {name, cost} = products.find(prod => prod.id === p.id)
-                    subtotal += cost * p.count
-                    return <li key={p.id}><b>{name}</b> ({p.count} x {useMoney(cost)}) <b>{useMoney(cost * p.count)}</b></li>
-                })
-                : (<div>No items in your cart, try going to the <Link to="/">SHOPPING PAGE</Link></div>)
-            }
-        </ul>
-        <footer>
-            {Boolean(cart.length) && <div><em>(this does not do anything)</em><button> Check Out {useMoney(subtotal)}</button></div>}
-        </footer>
-        </>
-    )
+  const cartProduct = useContext(UserContext)
+  const productsCart = cartProduct.addCart
+  const [addCart, setAddCart] = useState([])
+
+ 
+  const cartProd = productsCart.map(prod => <CartComp key={prod.id} data={prod} />)
+
+  const sumCart = [0]
+  productsCart.forEach(prod => sumCart.push(prod.price));
+
+
+ const totalCart = sumCart.reduce(sumPrice);
+
+ function sumPrice(total, num) {
+  return total + num;
+ }
+
+ 
+
+
+  return (
+    <Layout>
+    <header>
+    <h3><Link to={`/`}>BACK TO RESULT PAGE</Link></h3>
+{/* {(addCart.length === 0) ? (<h2>No products to display, go back to shopping page.</h2>) : */}
+        {cartProd}
+    </header>
+</Layout>
+  
+   
+  
+  )
+
 }
 
-export default Checkout
+
+export default Cartpage
