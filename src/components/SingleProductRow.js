@@ -31,9 +31,13 @@ const SingleProductRow = ({ data }) => {
         });
   
   }
-  const cartProduct = useContext(UserContext)
-  //   const handleAddCart = cartProduct.handleAddCart
-  //   const handleAddFav = cartProduct.handleAddFav
+  const cartItem = useContext(UserContext)
+const AddtoCart = cartItem.AddtoCart
+const favItem = useContext(UserContext)
+const AddtoFavorite = favItem.AddtoFavorite
+const DeletefromFavorite = favItem.DeletefromFavorite
+
+
 
 
   return (
@@ -64,10 +68,10 @@ const SingleProductRow = ({ data }) => {
           </div>
 
           <div className="add-cart">
-            <button type="button" className="add-cart"><span className="material-icons">shopping_cart</span> Add to Cart</button>
+            <button type="button" className="add-cart" onClick={(event) => AddtoCart(event, id)}><span className="material-icons">shopping_cart</span> Add to Cart</button>
             {fav ? (
-              <button type="button" className="product-favorite" onClick={addToFavorite}><span className="material-icons">favorite</span></button>
-            ) : (<button type="button" className="product-favorite" onClick={addToFavorite}><span className="material-icons">favorite_border</span></button>)
+              <button type="button" className="product-favorite" onClick={(event) => AddtoFavorite(event, id)}><span className="material-icons">favorite</span></button>
+            ) : (<button type="button" className="product-favorite" onClick={(event) => DeleteFromFavorite(event, id)}><span className="material-icons">favorite_border</span></button>)
             }        </div>
         </header>
       </article>

@@ -17,25 +17,15 @@ const Cartpage = () => {
  
   const cartProd = productsCart.map(prod => <CartComp key={prod.id} data={prod} />)
 
-  const sumCart = [0]
-  productsCart.forEach(prod => sumCart.push(prod.price));
-
-
- const totalCart = sumCart.reduce(sumPrice);
-
- function sumPrice(total, num) {
-  return total + num;
- }
-
  
-
 
   return (
     <Layout>
-    <header>
+    <header className="checkout-header">
     <h3><Link to={`/`}>BACK TO RESULT PAGE</Link></h3>
 {/* {(addCart.length === 0) ? (<h2>No products to display, go back to shopping page.</h2>) : */}
         {cartProd}
+        <button className="checkout-button" >CHECKOUT</button>
     </header>
 </Layout>
   

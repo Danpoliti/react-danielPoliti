@@ -32,53 +32,6 @@ const App = () => {
         loadData()
       }, [])
 
-//     const [cart, setCart] = useState([])
-//     const [fav, setFav] = useState([]);
-// // ADD
-//     const AddCart =  (event, id) => {
-//         const cartproduct = productsData.find(product => product.id.includes(id))
-//         const cartProd = cart.find(product => product.id.includes(cartproduct.id))
-//         if (cartProd===cartproduct){return}
-    
-//         setCart([...cart, cartproduct])
-       
-//       }
-// // DELETE
-//       const deleteItemCart =  (event, id) => {
-    
-//         const deleteItem = cart.filter(product => !product.id.includes(id))
-        
-//         setCart([...deleteItem])
-    
-//       }
-// //move items to favourites
-// const addFavorite =  (event, id) => {
-//     const cartproduct = productsData.find(product => product.id.includes(id))
-//     const cartProd = fav.find(product => product.id.includes(cartproduct.id))
-//     if (cartProd===cartproduct){
-//       const deleteItem = cart.filter(product => !product.id.includes(id))
-//       setCart([...deleteItem])
-//       return
-//     }
-
-//     setFav([...fav, cartproduct])
-//     const deleteItem = cart.filter(product => !product.name.includes(name))
-    
-//     setCart([...delProduct])
-    
-//   }
-
-    // const addToCart = (id) => {
-    //     const index = cart.findIndex((val) => val.id === id)
-
-    //     if (index === -1)
-    //     cart.push({id: id, count: 1})
-    //     else
-    //     cart[index].count++
-
-    //     setCart([...cart])
-    // }
-
     const userData = {
         id: 1234,
         username: `Daniel Politi`,
@@ -96,25 +49,44 @@ const App = () => {
         return fproduct
     }
     const [addCart, setAddCart] = useState([])
+    const [addFavorite, setAddFavorite] = useState ([])
 
-    // const addToCart = (userid) => {
-    //     const ffff = productsData.find((prod) =>prod.id.includes(userid))
-        
-    //     console.log(addCart)
-    //      // increase the "count" by +1
-        
-    //     setAddCart([ffff,...addCart])
-    // }
     const AddtoCart =  (event, userid) => {
-        const cproduct = productsData.find(product => product.id.includes(userid))
-       
-    console.log(cproduct)
-        setAddCart([...addCart, cproduct])
+        const cartProduct = productsData.find(product => product.id.includes(userid))
+ 
+        
+    console.log(cartProduct)
+        setAddCart([...addCart, cartProduct])
        
       }
+      
+    const AddtoFavorite =  (event, userid) => {
+        const favProduct = productsData.find(product => product.id.includes(userid))
+ 
+        
+    console.log(favProduct)
+        setAddFavorite([...addFavorite, favProduct])
+       
+      }
+      const DeletefromCart =  (event, prodid) => {
+    
+        const delItem = addCart.filter(product => !product.id.includes(prodid))
+        
+        setAddCart([...delItem])
+    
+      }
+      const DeletefromFavorite =  (event, prodid) => {
+    
+        const delItemFavorite = addFavorite.filter(product => !product.id.includes(prodid))
+        
+        setAddFavorite([...delItemFavorite])
+    
+      }
+
+
 
     return (
-        <UserContext.Provider value={{addCart: addCart, userdata: userData, updateUsername: updateUsername, data: productsData, updateProduct: updateProduct, AddtoCart: AddtoCart
+        <UserContext.Provider value={{addFavorite: addFavorite,DeletefromFavorite: DeletefromFavorite,AddtoFavorite: AddtoFavorite,DeletefromCart: DeletefromCart, addCart: addCart, userdata: userData, updateUsername: updateUsername, data: productsData, updateProduct: updateProduct, AddtoCart: AddtoCart
          }}>
             <CartContext.Provider value={{data: addCart}}>
             <Router>

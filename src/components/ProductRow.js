@@ -4,14 +4,12 @@ import Image from './Image.js'
 import firebase from 'utils/firebase'
 import UserContext from 'contexts/user'
 
-// import noImg from 'img/student.png'
 
 const ProductRow = ({ data }) => {
     const { id, name, category, regularPrice, price, details, img, color, cart, type } = data
 
     const [fav, setFav] = useState(false);
     const db = firebase.firestore()
-//const whatee = data.filter(prod => prod.fav.includes(true))
 
 // console.log(whatee)
 const addToFavorite = () => {
@@ -30,20 +28,9 @@ const addToFavorite = () => {
       });
 
 }
-// const addToCart = (id) => {
-//     const index = addCart.findIndex((val) => val.id === id)
-    
-//     console.log(addCart)
-//     if (index === -1) // product not found in the cart
-//         addCart.push({id: id, count: 1})
-//     else
-//         addCart[index].count++ // increase the "count" by +1
-    
-//     setAddCart([...addCart])
-// }
 
-const cartProduct = useContext(UserContext)
-const AddtoCart = cartProduct.AddtoCart
+const cartItem = useContext(UserContext)
+const AddtoCart = cartItem.AddtoCart
 
     return (
         <section className="results">
@@ -76,6 +63,11 @@ const AddtoCart = cartProduct.AddtoCart
                         <button type="button" className="product-favorite" onClick={addToFavorite}><span className="material-icons">favorite</span></button>
                         ) : ( <button type="button" className="product-favorite" onClick={addToFavorite}><span className="material-icons">favorite_border</span></button>)
                        }
+                                               {/* {fav ? (
+                            <button type="button" className="product-favorite" onClick={(event) => AddtoFavorite(event, id)}><span className="material-icons">favorite</span></button>
+                        ) : (<button type="button" className="product-favorite" onClick={(event) => DeleteFromFavorite(event, id)}><span className="material-icons">favorite_border</span></button>)
+                        }
+ */}
                         </div>
                 </header>
             </article>
